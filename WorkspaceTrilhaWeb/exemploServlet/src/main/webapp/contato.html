@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Exemplo servlet</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    
+    <form name="frmfaleconosco" method="get" action="#" onsubmit="return validaFaleConosco()"> <!-- Utilizar metodo post -->
+        <fieldset class="faleConosco">
+            <legend>Contato</legend>
+            <table>
+                <tr>
+                    <td>
+                        <label for="nome">Nome: </label>
+                        <input type="text" name="txtnome" id="nome">
+                    </td>                        
+                </tr>    
+                <tr>
+                    <td>
+                        <label for="fone">Telefone: </label>
+                        <input type="text" name="txtfone" id="fone">
+                    </td>
+                </tr>    
+                <tr>
+                    <td> 
+                        <label for="email">E-mail: </label>
+                        <input type="text" name="txtemail" id="email">
+                    </td>
+                </tr>            
+            </table>
+            <button type="reset" onclick="verificarMotivo(null)">Limpar</button>
+            <button type="submit">Enviar</button>
+        </fieldset>
+    </form>
+    
+    <script type="text/javascript">
+        function validaFaleConosco() {
+            var nome = document.frmfaleconosco.txtnome.value;
+            var expRegNome = new RegExp("^[A-zÀ-ü]{3,}([ ]{1}[A-zÀ-ü]{2,})+$");
+
+            if (!expRegNome.test(nome)) {
+                alert("Preencha o campo Nome corretamente.");
+                document.frmfaleconosco.txtnome.focus();
+                return false;
+            }
+
+            var fone = document.frmfaleconosco.txtfone.value;
+            var expRegFone = new RegExp("^\\(\\d{2}\\)\\d{4,5}-\\d{4}$");
+
+            if (!expRegFone.test(fone)) {
+                alert("Preencha o campo Telefone corretamente.");
+                document.frmfaleconosco.txtfone.focus();
+                return false;
+            }
+
+            if (document.frmfaleconosco.txtemail.value == "") {
+                alert("Preencha o campo Email.");
+                document.frmfaleconosco.txtemail.focus();
+                return false;
+            }
+            
+            return true; // Se tudo estiver correto, permite o envio do formulário
+        }
+    </script>
+</body>
+</html>

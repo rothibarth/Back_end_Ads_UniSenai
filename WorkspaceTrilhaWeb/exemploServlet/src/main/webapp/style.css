@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+/* Resetando as margens e padding padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Estilo geral do corpo da página */
+body {
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Estilo para o fieldset */
+fieldset {
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+}
+
+/* Estilo para o legend */
+legend {
+    font-size: 1.5em;
+    padding: 0 10px;
+    color: #333;
+}
+
+/* Estilo para a tabela */
+table {
+    width: 100%;
+}
+
+/* Estilo para as células da tabela */
+td {
+    padding: 10px 0;
+}
+
+/* Estilo para os labels */
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+/* Estilo para os inputs */
+input[type="text"] {
+    width: calc(100% - 20px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+/* Estilo para os botões */
+button {
+    padding: 10px 15px;
+    font-size: 1em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button[type="reset"] {
+    background-color: #e74c3c;
+    color: white;
+}
+
+button[type="submit"] {
+    background-color: #2ecc71;
+    color: white;
+    margin-left: 10px;
+}
+
+button:hover {
+    opacity: 0.9;
+}
