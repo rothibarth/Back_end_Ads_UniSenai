@@ -8,28 +8,26 @@
 
 <body>
     
-    <form name="frmfaleconosco" method="get" action="insereContato" onsubmit="return validaFaleConosco()"> <!-- Utilizar metodo post -->
+    <form name="frmfaleconosco"  action="insereContato" onsubmit="return validaFaleConosco()"> 
         <fieldset class="faleConosco">
             <legend>Contato</legend>
             <table>
+            
                 <tr>
-                    <td>
-                        <label for="nome">Nome: </label>
-                        <input type="text" name="txtnome" id="nome">
-                    </td>                        
+                	<td>Nome:</td>
+                    <td><input type="text" name="nome"></td>                        
                 </tr>    
+                              
                 <tr>
-                    <td>
-                        <label for="fone">Telefone: </label>
-                        <input type="text" name="txtfone" id="fone">
-                    </td>
-                </tr>    
+                    <td>Telefone:</td>
+                    <td><input type="text" name="fone"></td>
+                </tr>
+                    
                 <tr>
-                    <td> 
-                        <label for="email">E-mail: </label>
-                        <input type="text" name="txtemail" id="email">
-                    </td>
-                </tr>            
+                    <td>Email:</td>
+                    <td><input type="text" name="email"></td>
+                </tr>
+                           
             </table>
             <button type="reset" onclick="verificarMotivo(null)">Limpar</button>
             <button type="submit">Enviar</button>
@@ -38,27 +36,27 @@
     
     <script type="text/javascript">
         function validaFaleConosco() {
-            var nome = document.frmfaleconosco.txtnome.value;
+            var nome = document.frmfaleconosco.nome.value;
             var expRegNome = new RegExp("^[A-zÀ-ü]{3,}([ ]{1}[A-zÀ-ü]{2,})+$");
 
             if (!expRegNome.test(nome)) {
                 alert("Preencha o campo Nome corretamente.");
-                document.frmfaleconosco.txtnome.focus();
+                document.frmfaleconosco.nome.focus();
                 return false;
             }
 
-            var fone = document.frmfaleconosco.txtfone.value;
+            var fone = document.frmfaleconosco.fone.value;
             var expRegFone = new RegExp("^\\(\\d{2}\\)\\d{4,5}-\\d{4}$");
 
             if (!expRegFone.test(fone)) {
                 alert("Preencha o campo Telefone corretamente.");
-                document.frmfaleconosco.txtfone.focus();
+                document.frmfaleconosco.fone.focus();
                 return false;
             }
 
-            if (document.frmfaleconosco.txtemail.value == "") {
+            if (document.frmfaleconosco.email.value == "") {
                 alert("Preencha o campo Email.");
-                document.frmfaleconosco.txtemail.focus();
+                document.frmfaleconosco.email.focus();
                 return false;
             }
             
