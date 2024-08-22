@@ -49,6 +49,7 @@ nav .opcao{
 nav .opcao:hover{
     background-color: #83afd3;
 }
+
 section{
     clear: both;
     min-height: 470px;
