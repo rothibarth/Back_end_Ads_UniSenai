@@ -15,12 +15,15 @@ import br.com.coldigogeladeiras.modelo.Marca;
 import br.com.coldigogeladeiras.jdbc.JDBCMarcaDAO;
 @Path("marca")
 
-public class MarcaRest {
+public class MarcaRest extends UtilRest{
 	
 	@GET
 	@Path("/buscar")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response buscar() {
+		
+		
+	try {
 		
 		List<Marca> listaMarcas = new ArrayList<Marca>();
 		
@@ -29,6 +32,12 @@ public class MarcaRest {
 		JDBCMarcaDAO jdbcMarca = new JDBCMarcaDAO(conexao);
 		listaMarcas = jdbcMarca.buscar();
 		conec.fecharConexao();
+		return this.buildResponse(listaMarcas);
+	}catch(Exception e) {
+		e.printStackTrace();
+		return this.buildErrorResponse(e.getMessage());
+	}
+			
 		
 	}
 }
