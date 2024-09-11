@@ -31,7 +31,7 @@ public class UtilRest {
 		}catch (Exception ex) {
 			ex.printStackTrace();
 			//Se algo der errado acima, cria Response de erro
-			return this.buildResponse(ex.getMessage());
+			return this.buildErrorResponse(ex.getMessage());
 		}
 		
 	}

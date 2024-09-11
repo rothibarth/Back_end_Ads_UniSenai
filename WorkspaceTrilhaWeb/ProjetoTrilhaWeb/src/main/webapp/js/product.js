@@ -1,3 +1,5 @@
+
+
 $(document).ready(function(){
 	
 	//Carrega as marcas registradas no BD no select do formulario de inserir
@@ -9,6 +11,7 @@ $(document).ready(function(){
 			 type: "GET",
 			 url: "/ProjetoTrilhaWeb/rest/marca/buscar",
 			 success: function(marcas){
+				 alert("Sucesso");
 			 },
 			 error: function(info){
 				 alert("Erro");	 
