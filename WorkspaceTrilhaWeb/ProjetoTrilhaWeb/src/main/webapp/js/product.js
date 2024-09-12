@@ -1,4 +1,4 @@
-
+COLDIGO.produto = new Object();
 
 $(document).ready(function(){
 	

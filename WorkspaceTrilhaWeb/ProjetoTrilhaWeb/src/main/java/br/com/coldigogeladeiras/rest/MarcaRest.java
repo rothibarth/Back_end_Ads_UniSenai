@@ -22,7 +22,6 @@ public class MarcaRest extends UtilRest{
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response buscar() {
 		
-		
 	try {
 		
 		List<Marca> listaMarcas = new ArrayList<Marca>();
