@@ -14,7 +14,15 @@ $(document).ready(function(){
 				 alert("Sucesso");
 			 },
 			 error: function(info){
-				 alert("Erro");	 
+				 
+				 COLDIGO.exibirAviso("Erro ao buscar as marcas: " + info.status + " - " + info.statusText);
+				 
+				 $("#selMarca").html("");
+				 var option = document.createElement("option");
+				 option.setAttribute("value", "");
+				 option.innerHTML = ("Erro ao carregar marcas!");
+				 $("#selMarca").append(option);
+				 $("#selMarca").addClass("aviso");
 			 }
 		 });
 	}

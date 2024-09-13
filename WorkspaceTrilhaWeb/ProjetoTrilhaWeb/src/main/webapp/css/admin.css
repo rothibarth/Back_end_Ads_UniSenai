@@ -114,6 +114,13 @@ footer{
     padding: 10px;
 }
 
+/* MODAIS */
+
+#modalAviso{
+	display:none;
+}
+
+
 /* LAYOUT CRUDS */
 
 /* Titulo da pagina */
