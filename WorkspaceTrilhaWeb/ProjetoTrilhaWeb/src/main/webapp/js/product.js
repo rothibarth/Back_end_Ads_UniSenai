@@ -10,6 +10,7 @@ $(document).ready(function(){
 			 url: "/ProjetoTrilhaWeb/rest/marca/buscar",
 			 success: function(marcas){
 				 
+				 
 				 if(marcas!=""){
 					 
 					 $("#selMarca").html("");
@@ -18,7 +19,9 @@ $(document).ready(function(){
 					 option.innerHTML = ("Escolha");
 					 $("#selMarca").append(option);
 					 
+					 
 					 for (var i = 0; i < marcas.lenght; i++){
+						 
 						 
 						 var option = document.createElement("option");
 						 option.setAttribute ("value", marcas[i].id);

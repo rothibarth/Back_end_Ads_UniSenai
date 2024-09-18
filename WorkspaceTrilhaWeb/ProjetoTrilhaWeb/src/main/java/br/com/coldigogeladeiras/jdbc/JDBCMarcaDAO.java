@@ -7,6 +7,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import br.com.coldigogeladeiras.jdbcinterface.MarcaDAO;
 import br.com.coldigogeladeiras.modelo.Marca;
@@ -20,7 +25,7 @@ public class JDBCMarcaDAO implements MarcaDAO {
 	}
 
 	public List<Marca> buscar() {
-
+				
 		// Criação da instrução SQL para busca de todas as marcas
 		String comando = "SELECT * FROM marcas";
 
@@ -53,6 +58,7 @@ public class JDBCMarcaDAO implements MarcaDAO {
 				// Setando no objeto marca os valores encontrados
 				marca.setId(id);
 				marca.setNome(nome);
+				
 
 				// Adução da instancia contida no objeto Marca na lista de marcas
 				listMarcas.add(marca);

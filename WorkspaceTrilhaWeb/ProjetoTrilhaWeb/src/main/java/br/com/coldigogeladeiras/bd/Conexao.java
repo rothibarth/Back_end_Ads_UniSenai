@@ -8,9 +8,8 @@ public class Conexao {
 	
 	public Connection abrirConexao() {
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
-			conexao = java.sql.DriverManager.
-					getConnection("jdbc:mysql://localhost/bdcoldigo?"
+			Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
+			conexao = java.sql.DriverManager.getConnection("jdbc:mysql://localhost/bdcoldigo?"
 							+ "user=root&password=root&useTimezone=true&serverTimezone=UTC");
 		}catch(Exception e) {
 			e.printStackTrace();
