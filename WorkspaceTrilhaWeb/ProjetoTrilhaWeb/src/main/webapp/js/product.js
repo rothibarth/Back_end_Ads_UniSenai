@@ -20,7 +20,7 @@ $(document).ready(function(){
 					 $("#selMarca").append(option);
 					 
 					 
-					 for (var i = 0; i < marcas.lenght; i++){
+					 for (var i = 0; i < marcas.length; i++){
 						 
 						 
 						 var option = document.createElement("option");
