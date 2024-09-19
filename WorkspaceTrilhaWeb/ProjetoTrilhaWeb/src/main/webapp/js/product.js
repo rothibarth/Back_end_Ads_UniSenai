@@ -50,5 +50,24 @@ $(document).ready(function(){
 	 
 	COLDIGO.produto.carregarMarcas(); 
 	
+	//Cadastra no BD o produto informado
+	COLDIGO.produto.cadastrar = function(){
+		
+		var produto = new Object();
+		produto.categoria = document.frmAddProduto.categoria.value;
+		produto.marcaId = document.frmAddProduto.marcaId.value;
+		produto.modelo = document.frmAddProduto.modelo.value;
+		produto.capacidade = document.frmAddProduto.capacidade.value;
+		produto.valor = document.frmAddProduto.valor.value;
+		
+		if((produto.categoria=="") || (produto.marcaId=="") || (produto.modelo=="")
+		||(produto.capacidade=="") || (produto.valor=="")){
+			COLDIGO.exibirAviso("Preencha todos os campos!");
+			
+		}else{
+			
+		}
+	}
+	
 	 
  });
