@@ -31,6 +31,18 @@ public class ProdutoRest extends UtilRest{
 			JDBCProdutoDAO jdbcProduto = new JDBCProdutoDAO(conexao);
 			boolean retorno = jdbcProduto.inserir(produto);
 			
+			String msg = "";
+			
+			if(retorno) {
+				msg = "Produto cadastrado com sucesso!";
+			}else {
+				msg = "Erro ao cadastrar produto.";
+			}
+			
+			conec.fecharConexao();
+			
+			return this.buildResponse(msg);
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 			return this.buildErrorResponse(e.getMessage());
