@@ -7,7 +7,7 @@ $(document).ready(function(){
 		
 	 $.ajax({
 			 type: "GET",
-			 url: "/ProjetoTrilhaWeb/rest/marca/buscar",
+			 url: COLDIGO.PATH + "marca/buscar",
 			 success: function(marcas){
 				 
 				 
@@ -65,6 +65,19 @@ $(document).ready(function(){
 			COLDIGO.exibirAviso("Preencha todos os campos!");
 			
 		}else{
+			
+			$.ajax({
+				type: "POST",
+				url: COLDIGO.PATH + "produto/inserir",
+				data:JSON.stringify(produto),
+				success: function(msg){
+					COLDIGO.exibirAviso(msg);
+					$("#addProduto").trigger("reset");
+				},
+				error: function(info){
+					COLDIGO.exibirAviso("Erro ao cadastrar um novo produto:" + info.status + "-" + info.statusText);
+				}
+			});
 			
 		}
 	}
