@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import br.com.coldigogeladeiras.bd.Conexao;
 import br.com.coldigogeladeiras.jdbc.JDBCProdutoDAO;
 import br.com.coldigogeladeiras.modelo.Produto;
+import jakarta.ws.rs.core.MediaType;
 
 @Path("produto")
 public class ProdutoRest extends UtilRest{
@@ -47,6 +48,15 @@ public class ProdutoRest extends UtilRest{
 			e.printStackTrace();
 			return this.buildErrorResponse(e.getMessage());
 		}
+		
+	}
+	
+	@GET
+	@Path("/buscar")
+	@Consumes("application/*")
+	@Produces(MediaType.APPLICATION_JSON)
+	
+	public Response buscarPorNome(@QueryParam("valorBusca") String nome) {
 		
 	}
 }

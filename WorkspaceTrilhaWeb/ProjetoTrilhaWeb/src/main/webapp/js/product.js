@@ -82,5 +82,24 @@ $(document).ready(function(){
 		}
 	}
 	
+	//Busca no BD e exibe na pagina os produtos que atendem a solicitação do usuario
+	COLDIGO.produto.buscar = function(){
+		
+		var valorBusca = $("#campoBuscaProduto").val();
+		
+		$.ajax({
+			
+			type: "GET",
+			url: COLDIGO.PATH + "produto/buscar",
+			data: "valorBusca=" + valorBusca,
+			success: function(dados){
+				
+			},
+			error: function(info){
+				COLDIGO.exibirAviso("Erro ao consultar os contatos: " + info.status + "-" + info.statusText);
+			}
+		});
+	};
+	
 	 
  });
