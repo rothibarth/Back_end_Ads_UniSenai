@@ -34,7 +34,7 @@ $(document).ready(function() {
 			modal: true,
 			buttons: {
 				"OK": function(){
-					$(this).dialog("clore");
+					$(this).dialog("close");
 				}
 			}
 		};

@@ -64,7 +64,7 @@ public class JDBCProdutoDAO implements ProdutoDAO{
 		if(!nome.equals("")) {
 			//Concatena no comando o WHERE buscando no nome do produto
 			//o texto da variavel nome
-			comando += "WHERE modelo LIKE '%" + nome + "%'";
+			comando += "WHERE modelo LIKE '%" + nome + "%' ";
 		}
 		//Finaliza o comando ordenando alfabeticamento por
 		//categoria, marca e depois modelo
@@ -99,7 +99,7 @@ public class JDBCProdutoDAO implements ProdutoDAO{
 				produto.addProperty("modelo", modelo);
 				produto.addProperty("capacidade", capacidade);
 				produto.addProperty("valor", valor);
-				produto.addProperty("MarcaNome", marcaNome);
+				produto.addProperty("marcaNome", marcaNome);
 				
 				listaProdutos.add(produto);
 				

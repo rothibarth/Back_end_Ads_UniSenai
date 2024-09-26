@@ -104,5 +104,8 @@ $(document).ready(function(){
 		});
 	};
 	
+	//Executa a função de busca ao carregar a pagina
+	COLDIGO.produto.buscar();
+	
 	 
  });
