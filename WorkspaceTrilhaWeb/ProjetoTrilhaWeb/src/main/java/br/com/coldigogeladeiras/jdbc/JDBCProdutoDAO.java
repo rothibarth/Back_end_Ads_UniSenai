@@ -23,9 +23,9 @@ public class JDBCProdutoDAO implements ProdutoDAO{
 	
 	public boolean inserir(Produto produto) {
 		
-		String comando = "INSERT INTO produtos " 
-				+ "(id, categoria, modelo, capacidade, valor, marcas_id)"
-				+ "VALUES (?,?,?,?,?,?)";
+		String comando = " INSERT INTO produtos " 
+				+ " (id, categoria, modelo, capacidade, valor, marcas_id) "
+				+ " VALUES (?,?,?,?,?,?)";
 		
 		PreparedStatement p;
 		
@@ -57,18 +57,18 @@ public class JDBCProdutoDAO implements ProdutoDAO{
 	public List<JsonObject> buscarPorNome(String nome){
 		
 		//Inicia criação do comando SQL de busca
-		String comando = "SELECT produtos.*, marcas.nome as marca FROM produtos"
-				+ "INNER JOIN marcas ON produtos.marcas_id = marcas.id";
+		String comando = " SELECT produtos.*, marcas.nome as marca FROM produtos "
+				+ " INNER JOIN marcas ON produtos.marcas_id = marcas.id ";
 		
 		//Se o nome não estiver vazio...
 		if(!nome.equals("")) {
 			//Concatena no comando o WHERE buscando no nome do produto
 			//o texto da variavel nome
-			comando += "WHERE modelo LIKE '%" + nome + "%' ";
+			comando += " WHERE modelo LIKE '%" + nome + "%' " ;
 		}
 		//Finaliza o comando ordenando alfabeticamento por
 		//categoria, marca e depois modelo
-		comando += "ORDER BY categoria ASC, marcas.nome ASC, modelo ASC";
+		comando += " ORDER BY categoria ASC, marcas.nome ASC, modelo ASC ";
 		
 		List<JsonObject> listaProdutos = new ArrayList<JsonObject>();
 		JsonObject produto = null;
