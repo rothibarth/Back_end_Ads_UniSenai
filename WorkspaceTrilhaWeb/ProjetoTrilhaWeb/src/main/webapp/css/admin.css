@@ -116,7 +116,7 @@ footer{
 
 /* MODAIS */
 
-#modalAviso{
+#modalAviso, .modalEditar{
 	display:none;
 }
 
