@@ -130,4 +130,22 @@ public class JDBCProdutoDAO implements ProdutoDAO{
 		return true;
 	}
 	
+	public Produto buscarPorId(int id) {
+		String comando = "SELECT * FROM produtos WHERE produtos.id = ?";
+		Produto produto = new Produto();
+		
+		try {
+			PreparedStatement p = this.conexao.prepareStatement(comando);
+			p.setInt(1, id);
+			ResultSet rs = p.executeQuery();
+			while(rs.next()) {
+				
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return produto;
+	}
+	
 }
