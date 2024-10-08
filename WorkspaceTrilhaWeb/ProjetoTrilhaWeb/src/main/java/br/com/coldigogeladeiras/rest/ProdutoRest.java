@@ -132,6 +132,10 @@ public class ProdutoRest extends UtilRest{
 			
 			produto = jdbcProduto.buscarPorId(id);
 			
+			conec.fecharConexao();
+			
+			return this.buildResponse(produto);
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 			return this.buildErrorResponse(e.getMessage());

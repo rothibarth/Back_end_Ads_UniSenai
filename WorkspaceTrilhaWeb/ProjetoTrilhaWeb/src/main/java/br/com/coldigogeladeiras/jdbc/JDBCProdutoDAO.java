@@ -140,6 +140,19 @@ public class JDBCProdutoDAO implements ProdutoDAO{
 			ResultSet rs = p.executeQuery();
 			while(rs.next()) {
 				
+				String categoria = rs.getString("categoria");
+				String modelo = rs.getString("modelo");
+				int capacidade = rs.getInt("capacidade");
+				float valor = rs.getFloat("valor");
+				int marcaId = rs.getInt("marcas_id");
+				
+				produto.setId(id);
+				produto.setCategoria(categoria);
+				produto.setMarcaId(marcaId);
+				produto.setModelo(modelo);
+				produto.setCapacidade(capacidade);
+				produto.setValor(valor);
+				
 			}
 		} catch(Exception e) {
 			e.printStackTrace();

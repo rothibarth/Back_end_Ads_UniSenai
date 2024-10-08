@@ -173,6 +173,8 @@ $(document).ready(function(){
 			data: "id="+id,
 			success: function(produto){
 				
+				console.log(produto);
+				
 			},
 			error: function(info){
 				COLDIGO.exibirAviso("Erro ao buscar produto para edição:" + info.status + " - " + info.statusText);
