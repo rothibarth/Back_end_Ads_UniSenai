@@ -3,7 +3,13 @@ COLDIGO.produto = new Object();
 $(document).ready(function(){
 	
 	//Carrega as marcas registradas no BD no select do formulario de inserir
-	COLDIGO.produto.carregarMarcas = function(){
+	COLDIGO.produto.carregarMarcas = function(id){
+		
+		if(id!=undefined){
+			select = "#selMarcaEdicao";
+		}else{
+			select = "#selMarca"
+		}
 		
 	 $.ajax({
 			 type: "GET",
@@ -13,11 +19,11 @@ $(document).ready(function(){
 				 
 				 if(marcas!=""){
 					 
-					 $("#selMarca").html("");
+					 $("#select").html("");
 					 var option = document.createElement("option");
 					 option.setAttribute ("value", "");
 					 option.innerHTML = ("Escolha");
-					 $("#selMarca").append(option);
+					 $("#select").append(option);
 					 
 					 
 					 for (var i = 0; i < marcas.length; i++){
@@ -25,25 +31,30 @@ $(document).ready(function(){
 						 
 						 var option = document.createElement("option");
 						 option.setAttribute ("value", marcas[i].id);
+						 
+						 if((id!=undefined)&&(id==marcas[i].id))
+						 	option.setAttribute("selected", "selected");
+						 
 						 option.innerHTML = (marcas[i].nome);
-						 $("#selMarca").append(option);
+						 $("#select").append(option);
 						 
 					 }
 					 
 				 }else{
 					 
-					 $("#selMarca").html("");
+					 $("#select").html("");
 					 
 					 var option = document.createElement("option");
 					 option.setAttribute("value", "");
 					 option.innerHTML = ("Cadastre uma marca primeiro!");
-					 $("#selMarca").append(option);
-					 $("#selMarca").addClass("aviso");
+					 $("#select").append(option);
+					 $("#select").addClass("aviso");
 
 					 
 				 }
 				 
 			 },
+			 
 			
 		 });
 	}
@@ -126,9 +137,9 @@ $(document).ready(function(){
 				"<td>" + listaDeProdutos[i].marcaNome+"</td>" +
 				"<td>" + listaDeProdutos[i].modelo+"</td>" +
 				"<td>" + listaDeProdutos[i].capacidade+"</td>" +
-				"<td>R$" + COLDIGO.formatarDinheiro(listaDeProdutos[i].valor)+"</td>" +
+				"<td>R$ " + COLDIGO.formatarDinheiro(listaDeProdutos[i].valor)+"</td>" +
 				"<td>" +
-					"<a oncick=\"COLDIGO.produto.exibirEdicao('"+listaDeProdutos[i].id+"')\"><img src='../../imgs/edit.png' alt='Editar registro'></a>" +
+					"<a onclick=\"COLDIGO.produto.exibirEdicao('"+listaDeProdutos[i].id+"')\"><img src='../../imgs/edit.png' alt='Editar registro'></a>" +
 					"<a onclick=\"COLDIGO.produto.excluir('"+listaDeProdutos[i].id+ "')\"><img src='../../imgs/delete.png' alt='Excluir registro'></a>" +
 				"</td>" +
 				"</tr>"	
@@ -173,7 +184,42 @@ $(document).ready(function(){
 			data: "id="+id,
 			success: function(produto){
 				
-				console.log(produto);
+				document.frmEditaProduto.idProduto.value = produto.id;
+				document.frmEditaProduto.modelo.value = produto.modelo;
+				document.frmEditaProduto.capacidade.value = produto.capacidade;
+				document.frmEditaProduto.valor.value = produto.valor;
+				
+				var selCategoria = document.getElementById('selCategoriaEdicao');
+				for(var i=0; i< selCategoria.length; i++){
+					if(selCategoria.options[i].value == produto.categoria){
+						selCategoria.options[i].setAttribute("selected", "selected");
+					}else{
+						selCategoria.options[i].removeAttribute("selected");
+					}
+				}
+				
+				COLDIGO.produto.carregarMarcas(produto.marcaId);
+				
+				var modalEditaProduto = {
+					title: "Editar Produto",
+					height: 400,
+					width: 550, 
+					modal: true,
+					buttons:{
+						"Salvar" : function(){
+							
+						},
+						"Cancelar": function(){
+							$(this).dialog("close");
+						}
+					},
+					close: function(){
+						//caso o usuario simplesmente feche a caixa de edição
+						//não deve acontecer nada
+					}
+				};
+				
+				$("#modalEditaProduto").dialog(modalEditaProduto);
 				
 			},
 			error: function(info){

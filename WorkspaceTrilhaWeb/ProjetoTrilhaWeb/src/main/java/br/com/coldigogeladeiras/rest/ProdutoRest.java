@@ -124,14 +124,16 @@ public class ProdutoRest extends UtilRest{
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response buscarPorId(@QueryParam("id") int id) {
 		
+
 		try {
+			
 			Produto produto = new Produto();
 			Conexao conec = new Conexao();
 			Connection conexao = conec.abrirConexao();
 			JDBCProdutoDAO jdbcProduto = new JDBCProdutoDAO(conexao);
 			
 			produto = jdbcProduto.buscarPorId(id);
-			
+
 			conec.fecharConexao();
 			
 			return this.buildResponse(produto);

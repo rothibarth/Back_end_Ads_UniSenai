@@ -135,6 +135,7 @@ public class JDBCProdutoDAO implements ProdutoDAO{
 		Produto produto = new Produto();
 		
 		try {
+
 			PreparedStatement p = this.conexao.prepareStatement(comando);
 			p.setInt(1, id);
 			ResultSet rs = p.executeQuery();
