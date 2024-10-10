@@ -244,7 +244,9 @@ $(document).ready(function(){
 			url: COLDIGO.PATH + "produto/alterar",
 			data:JSON.stringify(produto),
 			success: function(msg){
-				
+				COLDIGO.exibirAviso(msg);
+				COLDIGO.produto.buscar();
+				$("#modalEditaProduto").dialog("close");
 			},
 			error: function(info){
 				COLDIGO.exibirAviso("Erro ao editar produto: " + info.status + " - " + info.statusText);

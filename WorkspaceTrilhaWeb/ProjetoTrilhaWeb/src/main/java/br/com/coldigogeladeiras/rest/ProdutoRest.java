@@ -159,6 +159,17 @@ public class ProdutoRest extends UtilRest{
 			
 			boolean retorno = jdbcProduto.alterar(produto);
 			
+			String msg = "";
+			
+			if(retorno) {
+				msg = "Produto alterado com sucesso!";
+			}else {
+				msg = "Erro ao alterar produto.";
+			}
+			
+			conec.fecharConexao();
+			return this.buildResponse(msg);
+			
 			}catch(Exception e) {
 				e.printStackTrace();
 				return this.buildErrorResponse(e.getMessage());
