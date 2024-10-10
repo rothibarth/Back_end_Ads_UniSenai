@@ -2,13 +2,13 @@ COLDIGO.produto = new Object();
 
 $(document).ready(function(){
 	
-	//Carrega as marcas registradas no BD no select do formulario de inserir
+	//Carrega as marcas registradas no BD no select do formulario de inserir ou editar
 	COLDIGO.produto.carregarMarcas = function(id){
 		
 		if(id!=undefined){
 			select = "#selMarcaEdicao";
 		}else{
-			select = "#selMarca"
+			select = "#selMarca";
 		}
 		
 	 $.ajax({
@@ -19,11 +19,11 @@ $(document).ready(function(){
 				 
 				 if(marcas!=""){
 					 
-					 $("#select").html("");
+					 $(select).html("");
 					 var option = document.createElement("option");
 					 option.setAttribute ("value", "");
 					 option.innerHTML = ("Escolha");
-					 $("#select").append(option);
+					 $(select).append(option);
 					 
 					 
 					 for (var i = 0; i < marcas.length; i++){
@@ -36,19 +36,19 @@ $(document).ready(function(){
 						 	option.setAttribute("selected", "selected");
 						 
 						 option.innerHTML = (marcas[i].nome);
-						 $("#select").append(option);
+						 $(select).append(option);
 						 
 					 }
 					 
 				 }else{
 					 
-					 $("#select").html("");
+					 $(select).html("");
 					 
 					 var option = document.createElement("option");
 					 option.setAttribute("value", "");
 					 option.innerHTML = ("Cadastre uma marca primeiro!");
-					 $("#select").append(option);
-					 $("#select").addClass("aviso");
+					 $(select).append(option);
+					 $(select).addClass("aviso");
 
 					 
 				 }
@@ -207,7 +207,7 @@ $(document).ready(function(){
 					modal: true,
 					buttons:{
 						"Salvar" : function(){
-							
+							COLDIGO.produto.editar();
 						},
 						"Cancelar": function(){
 							$(this).dialog("close");
@@ -226,6 +226,31 @@ $(document).ready(function(){
 				COLDIGO.exibirAviso("Erro ao buscar produto para edição:" + info.status + " - " + info.statusText);
 			}
 		});
+	};
+	
+	//Relaiza a edição dos dados no BD
+	COLDIGO.produto.editar = function(){
+		
+		var produto = new Object();
+		produto.id = document.frmEditaProduto.idProduto.value;
+		produto.categoria = document.frmEditaProduto.categoria.value;
+		produto.marcaId = document.frmEditaProduto.marcaId.value;
+		produto.modelo = document.frmEditaProduto.modelo.value;
+		produto.capacidade = document.frmEditaProduto.capacidade.value;
+		produto.valor = document.frmEditaProduto.valor.value;
+		
+		$.ajax({
+			type: "PUT",
+			url: COLDIGO.PATH + "produto/alterar",
+			data:JSON.stringify(produto),
+			success: function(msg){
+				
+			},
+			error: function(info){
+				COLDIGO.exibirAviso("Erro ao editar produto: " + info.status + " - " + info.statusText);
+			}
+		});
+		
 	};
 	
 	 
