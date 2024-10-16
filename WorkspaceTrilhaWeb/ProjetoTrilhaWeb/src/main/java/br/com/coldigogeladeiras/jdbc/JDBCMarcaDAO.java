@@ -74,4 +74,29 @@ public class JDBCMarcaDAO implements MarcaDAO {
 		// Retorna para quem chamou o metodo a lista criada
 		return listMarcas;
 	}
+	
+	public boolean inserir(Marca marca) {
+		
+		String comando = "INSERT INTO marcas"
+				+ " (id, nome) "
+				+ "VALUES (?,?)";
+		
+		PreparedStatement p;
+
+		try {
+			
+			p = this.conexao.prepareStatement(comando);
+			
+			p.setInt(1, marca.getId());
+			p.setString(2, marca.getNome());
+			
+			//executa o comando no BD
+			p.execute();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 }
