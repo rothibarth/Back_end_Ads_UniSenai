@@ -1,4 +1,4 @@
-<script src="../../js/marca.js"></script>  <!-- aqui tem que mudar para marca.js -->
+<script src="../../js/marca.js"></script>
 
 
 <h2>Registro de marca</h2>
@@ -11,7 +11,7 @@
 			<tr>
 				<th>Marca</th>
 				<td>
-					<input type="text" name="modelo">
+					<input type="text" name="nome">
 
 				</td>
 			</tr>
@@ -19,7 +19,7 @@
 			
 			<tr>
 				<td colspan="2">
-					<button type="button">Cadastrar</button>
+					<button type="button" onclick="COLDIGO.marca.cadastrarMarca()">Cadastrar</button>
 					<button type="reset">Limpar</button>
 				</td>
 			</tr>
@@ -29,22 +29,22 @@
 	</fieldset>
 </form>
 
-<!-- <h3>Produtos registrados</h3>
+  <h3>Marcas registradas</h3>
 
-<form id="filtraProduto" class="frmFiltrar">
+<form id="filtraMarca" class="frmFiltrar">
 
 	<fieldset>
 		<legend>Filtrar</legend>
-		<input type="text" name="txtbusca" id="campoBuscaProduto" placeholder="Pesquise pelo modelo">
-		<button type="button" onclick="COLDIGO.produto.buscar()">Buscar</button>
+		<input type="text" name="txtbusca" id="campoBuscaMarca" placeholder="Pesquise pela marca">
+		<button type="button" onclick="COLDIGO.marca.buscar()">Buscar</button>
 	</fieldset>
 	
-</form>
+</form> 
 
-<div id="listaProdutos" class="listaRegistros">
+<div id="listaMarcas" class="listaRegistros">
 </div>
 
-<div id="modalEditaProduto" class="modalEditar">
+<!-- <div id="modalEditaProduto" class="modalEditar">
 
 	<form name="frmEditaProduto" id="editaProduto" class="frmEditar">
 		<table>
@@ -92,8 +92,8 @@
 		</table>
 		<input type="hidden" name="idProduto">
 	</form>
-</div>
- -->
+</div> -->
+
 
 
 

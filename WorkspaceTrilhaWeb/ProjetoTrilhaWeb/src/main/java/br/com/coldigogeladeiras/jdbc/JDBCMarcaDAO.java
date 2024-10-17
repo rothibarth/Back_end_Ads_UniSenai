@@ -13,6 +13,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.google.gson.JsonObject;
+
+
 import br.com.coldigogeladeiras.jdbcinterface.MarcaDAO;
 import br.com.coldigogeladeiras.modelo.Marca;
 
@@ -77,9 +80,9 @@ public class JDBCMarcaDAO implements MarcaDAO {
 	
 	public boolean inserir(Marca marca) {
 		
-		String comando = "INSERT INTO marcas"
+		String comando = " INSERT INTO marcas "
 				+ " (id, nome) "
-				+ "VALUES (?,?)";
+				+ " VALUES (?,?)";
 		
 		PreparedStatement p;
 
@@ -98,5 +101,44 @@ public class JDBCMarcaDAO implements MarcaDAO {
 			return false;
 		}
 		return true;
+	}
+	
+	public List<JsonObject> buscarPorNome(String nome){ //NAO SEI SE TA CERTO OS COMANDOS SQL
+		
+		String comando = " SELECT marcas.*, marcas.nome as marca FROM marcas "
+				+ " INNER JOIN marcas ON marcas.marcas_id = marcas.id";
+		
+		//Se o nome não estiver vazio...
+		if(!nome.equals("")) {
+			
+		//Concatena no comando o WHERE buscando no nome do produto
+		//o texto da variavel nome
+		comando += " WHERE marcas LIKE '%" + nome + "%' " ;
+		}
+		
+		comando += " ORDER BY marcas.nome ASC";
+		
+		List<JsonObject> listaMarca = new ArrayList<JsonObject>();
+		JsonObject marca = null;
+		
+		try {
+			Statement stmt = conexao.createStatement();
+			ResultSet rs = stmt.executeQuery(comando);
+			
+			while(rs.next()) {
+				int id = rs.getInt("id");
+				String marcaNome = rs.getString("marca");
+				
+				marca = new JsonObject();
+				marca.addProperty("marca", marcaNome);
+				
+				listaMarca.add(marca);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return listaMarca;
 	}
 }
