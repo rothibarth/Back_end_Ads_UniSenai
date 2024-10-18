@@ -88,7 +88,7 @@ public class MarcaRest extends UtilRest{
 	}
 	
 	@GET
-	@Path("/buscar")
+	@Path("/buscarNome")
 	@Consumes("application/*")
 	@Produces(MediaType.APPLICATION_JSON)
 	
@@ -112,4 +112,33 @@ public class MarcaRest extends UtilRest{
 			return this.buildErrorResponse(e.getMessage());
 		}
 	}
+	
+	@GET
+	@Path("/buscarPorId")
+	@Consumes("application/*")
+	@Produces(MediaType.APPLICATION_JSON)
+	
+	public Response buscarPorId(@QueryParam("id") int id) {
+		
+		try {
+			
+			Marca marca = new Marca();
+			Conexao conec = new Conexao();
+			Connection conexao = conec.abrirConexao();
+			JDBCMarcaDAO jdbcMarca = new JDBCMarcaDAO(conexao);
+			
+			marca = jdbcMarca.buscarPorId(id);
+			
+			conec.fecharConexao();
+			
+			return this.buildResponse(marca);
+
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return this.buildErrorResponse(e.getMessage());
+		}
+		
+	}
+	
 }

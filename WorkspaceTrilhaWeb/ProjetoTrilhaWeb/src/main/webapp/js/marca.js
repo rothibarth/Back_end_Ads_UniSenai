@@ -40,7 +40,7 @@ $(document).ready(function(){
 		$.ajax({
 			
 			type: "GET",
-			url: COLDIGO.PATH + marca/buscar,
+			url: COLDIGO.PATH + marca/buscarNome,
 			data: "valorBusca=" + valorBusca,
 			success: function(dados){
 				
@@ -67,8 +67,27 @@ $(document).ready(function(){
 			
 			for(var i=0; i<listaDeMarca.length; i++){
 				
+			tabela += "<tr>" +
+						"<td>"+listaDeMarca[i].nome+"</td>" +  
+						"<td>"+
+						"</td>"+
+						"<td>"+
+							"<a onclick=\"COLDIGO.marca.exibirEdicao('"+listaDeMarca[i].id+"')\"><img src='../../imgs/edit.png' alt='Editar'></a>"+
+							"<a onclick=\"COLDIGO.marca.excluir('"+listaDeMarca[i].id+"')\"><img src='../../imgs/delete.png' alt='Excluir'></a>"+
+						"</td>"+
+						"</tr>";
+				
 			}
+		}else if(listaDeMarca == ""){
+			tabela += "<tr><td colspan='1'>Nenhum registro encontrado</td></tr>";
 		}
-	}
+		
+		tabela += "</table>";
+		
+		return tabela;
+	};
+	
+		COLDIGO.marca.buscar();
+
 	
 });

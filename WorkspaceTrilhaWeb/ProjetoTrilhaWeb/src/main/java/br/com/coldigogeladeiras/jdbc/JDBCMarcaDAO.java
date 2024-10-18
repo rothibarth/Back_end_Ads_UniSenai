@@ -105,18 +105,15 @@ public class JDBCMarcaDAO implements MarcaDAO {
 	
 	public List<JsonObject> buscarPorNome(String nome){ //NAO SEI SE TA CERTO OS COMANDOS SQL
 		
-		String comando = " SELECT marcas.*, marcas.nome as marca FROM marcas "
-				+ " INNER JOIN marcas ON marcas.marcas_id = marcas.id";
+		String comando = " SELECT * FROM marcas ";
 		
 		//Se o nome não estiver vazio...
 		if(!nome.equals("")) {
 			
-		//Concatena no comando o WHERE buscando no nome do produto
-		//o texto da variavel nome
-		comando += " WHERE marcas LIKE '%" + nome + "%' " ;
+		comando += " WHERE nome LIKE '%" + nome + "%' " ;
 		}
 		
-		comando += " ORDER BY marcas.nome ASC";
+		comando += " ORDER BY id ASC";
 		
 		List<JsonObject> listaMarca = new ArrayList<JsonObject>();
 		JsonObject marca = null;
@@ -127,10 +124,11 @@ public class JDBCMarcaDAO implements MarcaDAO {
 			
 			while(rs.next()) {
 				int id = rs.getInt("id");
-				String marcaNome = rs.getString("marca");
+				String marcaNome = rs.getString("nome");
 				
 				marca = new JsonObject();
-				marca.addProperty("marca", marcaNome);
+				marca.addProperty("nome", marcaNome);
+				marca.addProperty("id", id);
 				
 				listaMarca.add(marca);
 			}
@@ -140,5 +138,30 @@ public class JDBCMarcaDAO implements MarcaDAO {
 		}
 		
 		return listaMarca;
+	}
+	
+	public Marca buscarPorId(int id) {
+		
+		String comando = " SELECT * FROM marcas WHERE marcas.id = ? ";
+		Marca marca = new Marca();
+		
+		try {
+			
+			PreparedStatement p = this.conexao.prepareStatement(comando);
+			p.setInt(1, id);
+			ResultSet rs = p.executeQuery();
+			while(rs.next()) {
+				
+				String nome = rs.getString("nome");
+				
+				marca.setId(id);
+				marca.setNome(nome);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return marca;
 	}
 }
