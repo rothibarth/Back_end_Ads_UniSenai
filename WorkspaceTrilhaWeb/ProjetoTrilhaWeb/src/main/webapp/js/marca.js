@@ -35,17 +35,17 @@ $(document).ready(function(){
 	
 	COLDIGO.marca.buscar = function(){
 		
-		var valorBusca = $("campoBuscaMarca").val();
+		var valorBusca = $("#campoBuscaMarca").val();
 		
 		$.ajax({
 			
 			type: "GET",
-			url: COLDIGO.PATH + marca/buscarNome,
+			url: COLDIGO.PATH + "marca/buscarNome",
 			data: "valorBusca=" + valorBusca,
 			success: function(dados){
 				
 				dados = JSON.parse(dados);
-				$("listaMarcas").html(COLDIGO.marca.exibir(dados));
+				$("#listaMarcas").html(COLDIGO.marca.exibir(dados));
 			},
 			error: function(info){
 				COLDIGO.exibirAviso("Erro ao consultar os contatos: " + info.status + "-" + info.statusText);
@@ -60,7 +60,7 @@ $(document).ready(function(){
 		"<tr>" +
 		"<th>Nome</th>"+
 		"<th></th>"+
-		"<th class='acoes''>Ações</th>"+
+		"<th class='acoes'>Ações</th>"+
 		"</tr>";
 		
 		if(listaDeMarca != undefined && listaDeMarca.length > 0){
@@ -79,7 +79,7 @@ $(document).ready(function(){
 				
 			}
 		}else if(listaDeMarca == ""){
-			tabela += "<tr><td colspan='1'>Nenhum registro encontrado</td></tr>";
+			tabela += "<tr><td colspan='6'>Nenhum registro encontrado</td></tr>";
 		}
 		
 		tabela += "</table>";
@@ -88,6 +88,23 @@ $(document).ready(function(){
 	};
 	
 		COLDIGO.marca.buscar();
+		
+		//EXCLUSÃO
+		
+		COLDIGO.marca.excluir = function(id){
+			
+			$.ajax({
+				type:"DELETE",
+				url: COLDIGO.PATH + "marca/excluir/" + id,
+				success: function(msg){
+					COLDIGO.exibirAviso(msg);
+					COLDIGO.marca.buscar();
+				},
+				error: function(info){
+					COLDIGO.exibirAviso("Erro ao excluir marca: " + info.status + "-" + info.statusText);
+				}
+			});
+		};
 
 	
 });
