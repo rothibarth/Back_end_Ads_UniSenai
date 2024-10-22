@@ -184,7 +184,8 @@ public class MarcaRest extends UtilRest{
 			Conexao conec = new Conexao();
 			Connection conexao = conec.abrirConexao();
 			JDBCMarcaDAO jdbcMarca = new JDBCMarcaDAO(conexao);
-			
+			System.out.print(marca.getId());
+			System.out.print(marca.getNome());
 			boolean retorno = jdbcMarca.alterar(marca);
 			
 			String msg = "";

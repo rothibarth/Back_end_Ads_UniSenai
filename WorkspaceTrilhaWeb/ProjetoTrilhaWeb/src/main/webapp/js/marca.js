@@ -111,7 +111,7 @@ $(document).ready(function(){
 			
 			var marca = new Object();
 			marca.nome = document.frmEditaMarca.nome.value;
-			
+			marca.id = document.frmEditaMarca.id.value;
 			$.ajax({
 				type: "PUT",
 				url: COLDIGO.PATH + "marca/alterar",
@@ -137,7 +137,7 @@ $(document).ready(function(){
 				success: function(marca){
 					
 					document.frmEditaMarca.nome.value = marca.nome; 
-					
+					document.frmEditaMarca.id.value = marca.id;
 					var modalEditaMarca = {
 					title: "Editar Marca",
 					height: 400,
