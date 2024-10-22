@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -23,7 +24,6 @@ import com.google.gson.JsonObject;
 
 import br.com.coldigogeladeiras.bd.Conexao;
 import br.com.coldigogeladeiras.modelo.Marca;
-import jakarta.ws.rs.DELETE;
 import br.com.coldigogeladeiras.jdbc.JDBCMarcaDAO;
 @Path("marca")
 
@@ -165,6 +165,37 @@ public class MarcaRest extends UtilRest{
 			
 			conec.fecharConexao();
 			
+			return this.buildResponse(msg);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return this.buildErrorResponse(e.getMessage());
+		}
+	}
+	
+	@PUT
+	@Path("/alterar")
+	@Consumes("application/*")
+	
+	public Response alterar(String marcaParam) {
+		
+		try {
+			Marca marca = new Gson().fromJson(marcaParam, Marca.class);
+			Conexao conec = new Conexao();
+			Connection conexao = conec.abrirConexao();
+			JDBCMarcaDAO jdbcMarca = new JDBCMarcaDAO(conexao);
+			
+			boolean retorno = jdbcMarca.alterar(marca);
+			
+			String msg = "";
+			
+			if(retorno) {
+				msg = "Marca alterado com sucesso!";
+			}else {
+				msg = "Erro ao alterar marca";
+			}
+			
+			conec.fecharConexao();
 			return this.buildResponse(msg);
 			
 		}catch(Exception e) {

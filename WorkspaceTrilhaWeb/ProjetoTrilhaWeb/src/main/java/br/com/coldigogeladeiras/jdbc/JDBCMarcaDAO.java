@@ -182,4 +182,23 @@ public class JDBCMarcaDAO implements MarcaDAO {
 		
 		return true;
 	}
+	
+	public boolean alterar(Marca marca) {
+		String comando = " UPDATE marcas "
+				+ "SET nome=? WHERE id=?";
+		
+		PreparedStatement p;
+		
+		try {
+			p = this.conexao.prepareStatement(comando);
+			p.setString(1, marca.getNome());
+			p.setInt(2, marca.getId());
+			p.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;	
+	}
 }
