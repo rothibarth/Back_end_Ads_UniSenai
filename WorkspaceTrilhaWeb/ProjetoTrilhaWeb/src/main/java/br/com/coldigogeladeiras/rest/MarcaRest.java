@@ -160,7 +160,7 @@ public class MarcaRest extends UtilRest{
 			if(retorno) {
 				msg = "Marca excluida com sucesso!";
 			}else {
-				msg = "Erro ao excluir marca";
+				msg = "Erro ao excluir marca. Ou pode ser pois você está tentando excluir alguma marca cadastrada";
 			}
 			
 			conec.fecharConexao();

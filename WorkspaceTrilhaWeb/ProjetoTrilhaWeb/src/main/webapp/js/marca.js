@@ -97,12 +97,12 @@ $(document).ready(function(){
 				type:"DELETE",
 				url: COLDIGO.PATH + "marca/excluir/" + id,
 				success: function(msg){
-					console.log("Mensagem de retorno:", msg); //teste pois nao tava funcionando
+					console.log("Mensagem de retorno:", msg); 
 					COLDIGO.exibirAviso(msg);
 					COLDIGO.marca.buscar();
 				},
 				error: function(info){
-					COLDIGO.exibirAviso("Erro ao excluir marca: " + info.status + "-" + info.statusText);
+					COLDIGO.exibirAviso("Erro ao excluir marca: " + info.status + "-" + info.statusText + " pois essa marca está cadastrada");
 				}
 			});
 		};
